@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 21:24:09 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/17 20:15:47 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 16:55:02 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,30 @@
 # include <math.h>   
 # include <fcntl.h>
 #include <string.h>
+
+typedef struct  s_xy
+{
+    
+    int         x;
+    int         y;
+    
+}               t_xy;
+
+typedef struct  s_dbxy
+{
+    
+    double		x;
+    double		y;
+    
+}               t_dbxy;
+
+typedef struct  s_slope
+{
+    
+    int         slope;
+    int         slope_sign;
+    
+}               t_slope;
 
 typedef struct  s_player
 {
@@ -70,11 +94,11 @@ typedef struct  s_sprites
 {
 	double		x;
 	double		y;
-	double		distance;
+	double		dis;
 	double		angle;
 	int			is_visible;
-	double		height;
-	double		width;
+	double		h;
+	double		w;
 	double		top_y;
 	double		bottom_y;
 	double		left_x;
@@ -104,8 +128,8 @@ typedef struct  s_vars
     int         bits_per_pixel;
     int         line_length;
     int         endian;
-    int         window_height;
-    int         window_width;
+    int         win_h;
+    int         win_w;
     char       *window_title;
     int         R_ceiling;
     int         G_ceiling;
@@ -134,10 +158,13 @@ typedef struct  s_vars
 	int			sprite_id;
 	double		*wall_distances;
 	int			save;
+	double		ray_angle;
     t_player    player;
     t_rays      rays;
     t_textures  *tex;
 	t_sprites	*sprite;
+	t_xy		xy;
+	t_slope		slope;
     
 }               t_vars;
 
@@ -147,8 +174,7 @@ int     main(int argc, char **argv);
 void    ft_init_struct(t_vars *strct);
 int     ft_init_window(t_vars *strct);
 void    ft_mlx_pixel_put(t_vars *strct, int x, int y, int color);
-void    ft_square(t_vars *strct, int x, int y, int height, int width, unsigned int color);
-void    ft_line(t_vars *strct, int x1, int y1, int x2, int y2, int color);
+void	ft_square(t_vars *strct, int h, int w);
 void    ft_empty_circle(t_vars *strct, int x, int y, int radius, int color);
 void    ft_filled_circle(t_vars *strct, int x, int y, int radius, int color);
 int     key_press(int keycode, t_vars *strct);
@@ -177,7 +203,7 @@ int     ft_check_map(t_vars *strct);
 int     ft_map(char *str, t_vars *strct, int line_nbr);
 int     ft_render_map(t_vars *strct);
 int     ft_render_player(t_vars *strct);
-int    ft_draw_line(t_vars *strct, int x1, int y1, int x2, int y2);
+int    ft_draw_line(t_vars *strct, int x2, int y2);
 int     ft_has_wall_at(t_vars *strct, double x, double y);
 void    cast_all_rays(t_vars *strct);
 void        ft_init_rays(t_vars *strct);
@@ -194,5 +220,22 @@ void		rgb_maker(t_vars *strct);
 int					save_bmp_file(t_vars *strct);
 void	ft_bzero(void *s, size_t n);
 int		ft_init_image(t_vars *strct);
+void		calc_sprite(t_vars *strct, int i, double perp, double dis);
+int			nbr_free(char **nbr);
+int			dx_0(t_vars *strct, t_xy *xy, t_xy *xy2, t_xy *dxy);
+int			dy_0(t_vars *strct, t_xy *xy, t_xy *xy2, t_xy *dxy);
+void			set_strct(t_vars *strct, t_xy *xy, t_xy *xy2);
+void		calc_slope(t_vars *strct, t_xy *dxy, t_xy *xy);
+void		draw(t_vars *strct, t_xy *xy, t_xy *xy2);
+int			ft_which_texture(t_vars *strct, double ray_angle);
+void		ft_large_slope(t_vars *strct, int slope_sign, t_xy *xy1, t_xy *xy2);
+void		ft_small_slope(t_vars *strct, int slope_sign, t_xy *xy1, t_xy *xy2);
+void		ft_render_3d_rays(t_vars *strct, double ray_angle);
+void		ft_distance_calc(t_vars *strct, double ray_angle);
+void		ft_vertical_check(t_vars *strct, double ray_angle);
+void		set_xy_colors(t_vars *strct, int i, int wall_bottom_pixel);
+
+
+
 
 #endif

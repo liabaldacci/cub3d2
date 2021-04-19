@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 19:47:10 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/17 17:44:16 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 12:20:39 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ int         ft_check_map(t_vars *strct)
     {
         ft_map(line, strct, line_nbr);
         printf("%s\n", strct->map[line_nbr]);
-        line_nbr++;
     }
     close(fd);
     free(line);

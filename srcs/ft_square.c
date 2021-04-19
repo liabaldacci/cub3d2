@@ -6,44 +6,47 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 21:59:03 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/08 13:45:32 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:36:57 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void    ft_black_screen(t_vars *strct)
+void	ft_black_screen(t_vars *strct)
 {
-    int i;
-    int j;
+	int i;
+	int j;
 
-    i = 0;
-    j = 0;
-    while (i < strct->window_width) {
-        while (j < strct->window_height) {
-            ft_mlx_pixel_put(strct, i, j, 0x00000000);
-            j++;
-        }
-        j = 0;
-        i++;
-    }
+	i = 0;
+	j = 0;
+	while (i < strct->win_w)
+	{
+		while (j < strct->win_h)
+		{
+			ft_mlx_pixel_put(strct, i, j, 0x00000000);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 }
 
-void    ft_square(t_vars *strct, int x, int y, int height, int width, unsigned int color)
+void	ft_square(t_vars *strct, int h, int w)
 {
-    int x_temp;
-    int y_temp;
+	int x_temp;
+	int y_temp;
 
-    x_temp = x;
-    y_temp = y;
-    while (y < (height + y_temp))
-    {
-        while (x < (width + x_temp))
-        {
-            ft_mlx_pixel_put(strct, x, y, color);
-            x++;
-        }
-        x = x_temp;
-        y++;
-    }
+	x_temp = strct->xy.x;
+	y_temp = strct->xy.y;
+	while (strct->xy.y < (h + y_temp))
+	{
+		while (strct->xy.x < (w + x_temp))
+		{
+			ft_mlx_pixel_put(strct, strct->xy.x, strct->xy.y,
+				strct->color);
+			strct->xy.x++;
+		}
+		strct->xy.x = x_temp;
+		strct->xy.y++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 20:03:34 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/17 20:12:25 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:32:28 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void ft_init_struct(t_vars *strct)
 	i = -1;
     strct->rays = (t_rays){0};
     strct->player = (t_player){0};
+    strct->xy = (t_xy){0};
+	strct->slope = (t_slope){0};
     strct->window_title = "Hello world!";
     strct->player.width = 5;
     strct->player.height = 5;
@@ -46,16 +48,16 @@ void ft_init_struct(t_vars *strct)
 
 int		ft_init_image(t_vars *strct)
 {
-	strct->img = mlx_new_image(strct->mlx, strct->window_width,
-            strct->window_height);
+	strct->img = mlx_new_image(strct->mlx, strct->win_w,
+            strct->win_h);
     strct->addr = mlx_get_data_addr(strct->img, &strct->bits_per_pixel,
             &strct->line_length, &strct->endian);
 	return(0);
 }
 
 int    ft_init_window(t_vars *strct) {
-    strct->mlx_win = mlx_new_window(strct->mlx, strct->window_width,
-        strct->window_height, strct->window_title);
+    strct->mlx_win = mlx_new_window(strct->mlx, strct->win_w,
+        strct->win_h, strct->window_title);
     if (!strct->mlx_win){
         printf("Error initializing strct.");
         return (-1);
@@ -79,7 +81,7 @@ void	ft_init_sprites(t_vars *strct)
 
 void    ft_init_rays(t_vars *strct)
 {
-    strct->rays.num_of = strct->window_width;
+    strct->rays.num_of = strct->win_w;
 	strct->wall_distances = (double *)ft_calloc(strct->rays.num_of * sizeof(double));
-    strct->rays.size_of = strct->window_width / strct->player.fov_angle;
+    strct->rays.size_of = strct->win_w / strct->player.fov_angle;
 }

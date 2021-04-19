@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 21:04:17 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/12 19:33:21 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:36:57 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int         ft_resolution(char *str, t_vars *strct)
         free(width);
         return (-1);
     }
-    strct->window_width = ft_atoi(width);
-    strct->window_height = ft_atoi(height);
-    if ((strct->window_width > screen_width)
-        || (strct->window_height > screen_height))
+    strct->win_w = ft_atoi(width);
+    strct->win_h = ft_atoi(height);
+    if ((strct->win_w > screen_width)
+        || (strct->win_h > screen_height))
         {
         ft_putendl_fd("Your window is too big!!!", 1);
         free(height);

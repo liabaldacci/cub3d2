@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:13:39 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/17 22:00:16 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:44:02 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,29 @@ double			ft_calc_angle(t_vars *strct, int i)
 	double	angle;
 	double	j;
 
-	// if(strct->player.rotation_angle >= 0 && strct->player.rotation_angle <= PI)
-	// {
-	// 	strct->sprite[i].x = strct->sprite[i].x + strct->tile_X;
-	// 	strct->sprite[i].y = strct->sprite[i].y + strct->tile_Y; 
-	// }
-	// j = atan2(strct->sprite[i].y - (double)strct->player.y,
-	// 	strct->sprite[i].x - (double)strct->player.x);
-	// if(strct->player.rotation_angle >= 0 && strct->player.rotation_angle <= PI)
-	// {
-	// 	strct->sprite[i].x = ((strct->sprite[i].x + 1) * strct->tile_X);
-	// 	strct->sprite[i].y = ((strct->sprite[i].y + 1) * strct->tile_Y);
-	// }
-	// else
-	// {
-	// 	strct->sprite[i].x = (strct->sprite[i].x * strct->tile_X);
-	// 	strct->sprite[i].y = (strct->sprite[i].y * strct->tile_Y);
-	// }
 	angle = atan2(strct->sprite[i].y - strct->player.y,
 		strct->sprite[i].x - strct->player.x) - strct->player.rotation_angle;
-	// angle = strct->player.rotation_angle - j;
 	if (angle > PI)
 		angle -= TWO_PI;
 	if (angle < -PI)
 		angle += TWO_PI;
 	angle = fabs(angle);
-	// ft_normalize_angle(angle);
 	return (angle);
 }
 
-void			ft_calc_distance(t_vars *strct, double angle_sprite_player, int i)
+void			ft_calc_distance(t_vars *strct, double angl_sprt_plyr, int i)
 {
 	double		epsilon;
 
 	epsilon = 0.2;
-	strct->sprite[i].distance =
+	strct->sprite[i].dis =
 			ft_distance_between_points(strct->sprite[i].x, strct->sprite[i].y,
 			strct->player.x, strct->player.y);
-	if (angle_sprite_player < ((strct->player.fov_angle / 2) + epsilon))
+	if (angl_sprt_plyr < ((strct->player.fov_angle / 2) + epsilon))
 	{
 		strct->sprite[i].is_visible = 1;
-		strct->sprite[i].angle = angle_sprite_player;
-		strct->sprite[i].distance =
+		strct->sprite[i].angle = angl_sprt_plyr;
+		strct->sprite[i].dis =
 			ft_distance_between_points(strct->sprite[i].x, strct->sprite[i].y,
 			strct->player.x, strct->player.y);
 	}
@@ -78,7 +59,7 @@ void			ft_sort_sprites(t_vars *strct)
 		j = i + 1;
 		while (j < strct->num_of_sprites)
 		{
-			if (strct->sprite[i].distance < strct->sprite[j].distance)
+			if (strct->sprite[i].dis < strct->sprite[j].dis)
 			{
 				temp = strct->sprite[i];
 				strct->sprite[i] = strct->sprite[j];
@@ -92,32 +73,23 @@ void			ft_sort_sprites(t_vars *strct)
 
 void			ft_render_single_sprite(t_vars *strct, int i)
 {
-	double	distance_proj_plane;
+	double	d_proj;
 	double	screen_pos_x;
 	int		x;
 	double	angle;
 	double	perp_distance;
 
-	distance_proj_plane = (strct->window_width / 2)
-        / tan(strct->player.fov_angle / 2);
-	perp_distance = strct->sprite[i].distance * cos(strct->sprite[i].angle);
-	strct->sprite[i].height = (strct->tile_Y / perp_distance) * distance_proj_plane;
-	strct->sprite[i].width = (strct->tile_X / strct->sprite[i].distance) * distance_proj_plane;
-
-	strct->sprite[i].top_y = (strct->window_height / 2) - (strct->sprite[i].height / 2);
-	strct->sprite[i].top_y = (strct->sprite[i].top_y < 0) ? 0 : strct->sprite[i].top_y;
-	
-	strct->sprite[i].bottom_y = (strct->window_height / 2) + (strct->sprite[i].height / 2);
-	strct->sprite[i].bottom_y = (strct->sprite[i].bottom_y > strct->window_height) ? strct->window_height : strct->sprite[i].bottom_y;
-
+	d_proj = (strct->win_w / 2)
+		/ tan(strct->player.fov_angle / 2);
+	perp_distance = strct->sprite[i].dis * cos(strct->sprite[i].angle);
+	calc_sprite(strct, i, perp_distance, d_proj);
 	angle = atan2(strct->sprite[i].y - strct->player.y,
 		strct->sprite[i].x - strct->player.x);
 	angle = atan2(strct->sprite[i].y - strct->player.y,
 		strct->sprite[i].x - strct->player.x) - strct->player.rotation_angle;
-	screen_pos_x = tan(angle) * distance_proj_plane;
-	strct->sprite[i].left_x = (strct->window_width / 2) + screen_pos_x;
-	strct->sprite[i].right_x = strct->sprite[i].left_x + strct->sprite[i].width;
-
+	screen_pos_x = tan(angle) * d_proj;
+	strct->sprite[i].left_x = (strct->win_w / 2) + screen_pos_x;
+	strct->sprite[i].right_x = strct->sprite[i].left_x + strct->sprite[i].w;
 	x = strct->sprite[i].left_x;
 	while (x < strct->sprite[i].right_x)
 	{
@@ -130,7 +102,7 @@ void			ft_render_sprites(t_vars *strct)
 {
 	int			i;
 	double		angle_sprite_player;
-	
+
 	i = 0;
 	printf("rotation angle: %f\n", strct->player.rotation_angle);
 	while (i < strct->num_of_sprites)
@@ -139,7 +111,7 @@ void			ft_render_sprites(t_vars *strct)
 		ft_calc_distance(strct, angle_sprite_player, i);
 		i++;
 	}
-	i = 0 ;
+	i = 0;
 	ft_sort_sprites(strct);
 	while (i < strct->num_of_sprites)
 	{

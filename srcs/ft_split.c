@@ -6,15 +6,15 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:03:14 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/08 13:06:29 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:11:55 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-static size_t   ft_wordlen(char const *s, char c)
+static size_t	ft_wordlen(char const *s, char c)
 {
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -24,8 +24,8 @@ static size_t   ft_wordlen(char const *s, char c)
 
 static size_t	num_of_words(char const *s, char c)
 {
-	int		    total;
-	int		    i;
+	int			total;
+	int			i;
 
 	i = 0;
 	total = 0;
@@ -51,9 +51,9 @@ static char		*next_word(char const *s, char c)
 
 char			**ft_split(char const *s, char c)
 {
-	char	    **final;
-	size_t	    i;
-	size_t	    words;
+	char		**final;
+	size_t		i;
+	size_t		words;
 
 	if (s != NULL)
 	{

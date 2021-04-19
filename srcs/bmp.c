@@ -14,8 +14,8 @@ static int			store_color(t_vars *strct, int x, int y)
 	unsigned int	color;
 	unsigned char	addr_color[4];
 
-	color = *(unsigned int *)(strct->addr + strct->window_width *
-			(strct->window_height - y - 1) * 4 + x * 4);
+	color = *(unsigned int *)(strct->addr + strct->win_w *
+			(strct->win_h - y - 1) * 4 + x * 4);
 	little_endian_int(&addr_color[0], color);
 	return (*(unsigned int*)(addr_color));
 }
@@ -26,14 +26,14 @@ static void			bmp_header(t_vars *strct, int fd)
 	int				filesize;
 
 	ft_bzero(&file, 54);
-	filesize = 54 + strct->window_height * strct->window_width * strct->bits_per_pixel / 8;
+	filesize = 54 + strct->win_h * strct->win_w * strct->bits_per_pixel / 8;
 	file[0] = (unsigned char)('B');
 	file[1] = (unsigned char)('M');
 	little_endian_int(&file[2], filesize);
 	file[10] = (unsigned char)(54);
 	file[14] = (unsigned char)(40);
-	little_endian_int(&file[18], strct->window_width);
-	little_endian_int(&file[22], strct->window_height);
+	little_endian_int(&file[18], strct->win_w);
+	little_endian_int(&file[22], strct->win_h);
 	file[26] = (unsigned char)(1);
 	file[28] = (unsigned char)(32);
 	write(fd, &file, 54);
@@ -42,7 +42,7 @@ static void			bmp_header(t_vars *strct, int fd)
 int					save_bmp_file(t_vars *strct)
 {
 	int				fd;
-	int				bmp[strct->window_height][strct->window_width];
+	int				bmp[strct->win_h][strct->win_w];
 	int				x;
 	int				y;
 
@@ -51,10 +51,10 @@ int					save_bmp_file(t_vars *strct)
 		return (-1);
 	bmp_header(strct, fd);
 	y = 0;
-	while (y < strct->window_height)
+	while (y < strct->win_h)
 	{
 		x = 0;
-		while (x < strct->window_width)
+		while (x < strct->win_w)
 		{
 			bmp[y][x] = store_color(strct, x, y);
 			write(fd, &bmp[y][x], 4);

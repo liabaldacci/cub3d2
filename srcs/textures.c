@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:10:45 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/17 20:38:46 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:36:57 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void        ft_draw_texture(t_vars *strct, int top_pixel, int bottom_pixel, doub
         x_tex = fmod(strct->rays.wall_hit_x, strct->tile_X) * (strct->tex[i].w / (double)strct->tile_X);
     while (y <= bottom_pixel)
     {
-        distance_from_top = y + (wall_strip_height / 2) - (strct->window_height / 2);
+        distance_from_top = y + (wall_strip_height / 2) - (strct->win_h / 2);
         y_tex = (distance_from_top * (strct->tex[i].h / wall_strip_height));
         color = get_tex_pixel(strct, (int)x_tex, (int)y_tex, i);
         ft_mlx_pixel_put(strct, x, y, color);
@@ -83,16 +83,16 @@ void        ft_draw_sprite(t_vars *strct, int x, int i)
 	double	texel_width;
 
 	y = strct->sprite[i].top_y;
-	texel_width = (strct->tex[4].w / strct->sprite[i].width);
+	texel_width = (strct->tex[4].w / strct->sprite[i].w);
 	x_tex = (x - strct->sprite[i].left_x) * texel_width;
 	while (y < strct->sprite[i].bottom_y)
 	{
-		if (x > 0 && x < strct->window_width)
+		if (x > 0 && x < strct->win_w)
 		{
-			distance_from_top = y + (strct->sprite[i].height / 2) - (strct->window_height / 2);
-			y_tex = distance_from_top * (strct->tex[4].h / strct->sprite[i].height);
+			distance_from_top = y + (strct->sprite[i].h / 2) - (strct->win_h / 2);
+			y_tex = distance_from_top * (strct->tex[4].h / strct->sprite[i].h);
  			color = get_tex_pixel(strct, (int)x_tex, (int)y_tex, 4);
-			if ((strct->sprite[i].distance < (strct->wall_distances[x])) && color != 0x000000)
+			if ((strct->sprite[i].dis < (strct->wall_distances[x])) && color != 0x000000)
         		ft_mlx_pixel_put(strct, x, y, color);
 		}
 		y++;
