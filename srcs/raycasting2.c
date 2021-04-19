@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 16:01:40 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 16:48:36 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:33:25 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int			ft_which_texture(t_vars *strct, double ray_angle)
 {

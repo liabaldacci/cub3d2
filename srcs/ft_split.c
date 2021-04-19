@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:03:14 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:11:55 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:32:17 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 static size_t	ft_wordlen(char const *s, char c)
 {

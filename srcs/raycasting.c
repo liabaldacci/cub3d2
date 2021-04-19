@@ -6,22 +6,22 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 19:51:29 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 16:48:12 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:33:21 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void		init_horz(t_dbxy *intercept, t_dbxy *step, t_dbxy *next_touch,
 				t_vars *strct)
 {
-	intercept->y = (floor(strct->player.y / strct->tile_Y)) * strct->tile_Y;
-	intercept->y += strct->rays.is_facing_down ? strct->tile_Y : 0;
+	intercept->y = (floor(strct->player.y / strct->tile_y)) * strct->tile_y;
+	intercept->y += strct->rays.is_facing_down ? strct->tile_y : 0;
 	intercept->x = strct->player.x + ((intercept->y - strct->player.y)
 		/ tan(strct->ray_angle));
-	step->y = strct->tile_Y;
+	step->y = strct->tile_y;
 	step->y *= strct->rays.is_facing_up ? -1 : 1;
-	step->x = strct->tile_Y / tan(strct->ray_angle);
+	step->x = strct->tile_y / tan(strct->ray_angle);
 	step->x *= (strct->rays.is_facing_left && step->x > 0) ? -1 : 1;
 	step->x *= (strct->rays.is_facing_right && step->x < 0) ? -1 : 1;
 	next_touch->x = intercept->x;
@@ -74,13 +74,13 @@ void		ft_horizontal_check(t_vars *strct, double ray_angle)
 void		init_vert(t_dbxy *intercept, t_dbxy *step, t_dbxy *next_touch,
 				t_vars *strct)
 {
-	intercept->x = (floor(strct->player.x / strct->tile_X)) * strct->tile_X;
-	intercept->x += strct->rays.is_facing_right ? strct->tile_X : 0;
+	intercept->x = (floor(strct->player.x / strct->tile_x)) * strct->tile_x;
+	intercept->x += strct->rays.is_facing_right ? strct->tile_x : 0;
 	intercept->y = strct->player.y + ((intercept->x - strct->player.x)
 		* tan(strct->ray_angle));
-	step->x = strct->tile_X;
+	step->x = strct->tile_x;
 	step->x *= strct->rays.is_facing_left ? -1 : 1;
-	step->y = strct->tile_X * tan(strct->ray_angle);
+	step->y = strct->tile_x * tan(strct->ray_angle);
 	step->y *= (strct->rays.is_facing_up && step->y > 0) ? -1 : 1;
 	step->y *= (strct->rays.is_facing_down && step->y < 0) ? -1 : 1;
 	next_touch->x = intercept->x;

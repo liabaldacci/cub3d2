@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 21:59:03 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:36:57 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:32:23 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void	ft_black_screen(t_vars *strct)
 {

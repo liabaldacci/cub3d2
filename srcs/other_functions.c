@@ -6,45 +6,50 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 20:43:11 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:44:14 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:33:16 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
-double		ft_normalize_angle(double angle){
+double		ft_normalize_angle(double angle)
+{
 	double	remainder;
 
-	if (angle > TWO_PI || angle < 0){
+	if (angle > TWO_PI || angle < 0)
+	{
 		remainder = fmod(angle, TWO_PI);
 		angle = (angle < 0) ? (TWO_PI + remainder) : remainder;
 	}
-	return (angle);    
+	return (angle);
 }
 
-double		ft_distance_between_points(double x1, double y1, double x2, double y2)
+double		ft_distance_between_points(double x1, double y1,
+				double x2, double y2)
 {
 	double	distance;
 
 	distance = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-	return (distance);	
+	return (distance);
 }
 
-int		create_rgb(int t, int r, int g, int b)
+int			create_rgb(int t, int r, int g, int b)
 {
-	return(t << 24 | r << 16 | g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 void		rgb_maker(t_vars *strct)
 {
-	strct->RGB_ceiling = create_rgb(0, strct->R_ceiling, strct->G_ceiling, strct->B_ceiling);
-	strct->RGB_floor = create_rgb(0, strct->R_floor, strct->G_floor, strct->B_floor);
+	strct->rgb_ceiling = create_rgb(0,
+		strct->r_ceiling, strct->g_ceiling, strct->b_ceiling);
+	strct->rgb_floor = create_rgb(0,
+		strct->r_floor, strct->g_floor, strct->b_floor);
 }
 
 void		calc_sprite(t_vars *strct, int i, double perp, double dis)
 {
-	strct->sprite[i].h = (strct->tile_Y / perp) * dis;
-	strct->sprite[i].w = (strct->tile_X / strct->sprite[i].dis) * dis;
+	strct->sprite[i].h = (strct->tile_y / perp) * dis;
+	strct->sprite[i].w = (strct->tile_x / strct->sprite[i].dis) * dis;
 	strct->sprite[i].top_y = (strct->win_h / 2) - (strct->sprite[i].h / 2);
 	strct->sprite[i].top_y = (strct->sprite[i].top_y < 0) ?
 		0 : strct->sprite[i].top_y;

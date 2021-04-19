@@ -1,4 +1,16 @@
-#include "../cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bmp.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/19 17:02:01 by gadoglio          #+#    #+#             */
+/*   Updated: 2021/04/19 18:30:35 by gadoglio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
 #include <sys/stat.h>
 
 static void			little_endian_int(unsigned char *adr, unsigned int vl)
@@ -26,7 +38,8 @@ static void			bmp_header(t_vars *strct, int fd)
 	int				filesize;
 
 	ft_bzero(&file, 54);
-	filesize = 54 + strct->win_h * strct->win_w * strct->bits_per_pixel / 8;
+	filesize = 54 + strct->win_h * strct->win_w
+				* strct->bits_per_pixel / 8;
 	file[0] = (unsigned char)('B');
 	file[1] = (unsigned char)('M');
 	little_endian_int(&file[2], filesize);

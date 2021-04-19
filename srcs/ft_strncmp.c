@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 19:19:00 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:27:40 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:32:42 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int					ft_strncmp(const char *s1, const char *s2, size_t n)
 {

@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:24:30 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 15:21:04 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:31:28 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int			do_the_thing(t_vars *strct, t_xy *xy1, t_xy *xy2, t_xy *dxy)
 {

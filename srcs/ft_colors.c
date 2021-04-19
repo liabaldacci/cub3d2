@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:46:53 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 12:10:56 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:31:01 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int			ft_split_number(char *str, int i, char **number)
 {
@@ -60,20 +60,20 @@ void		set_colors(t_vars *strct, int nbr, int rgb, char *str)
 	if (str[0] == 'C')
 	{
 		if (rgb == 0)
-			strct->R_ceiling = nbr;
+			strct->r_ceiling = nbr;
 		else if (rgb == 1)
-			strct->G_ceiling = nbr;
+			strct->g_ceiling = nbr;
 		else if (rgb == 2)
-			strct->B_ceiling = nbr;
+			strct->b_ceiling = nbr;
 	}
 	else
 	{
 		if (rgb == 0)
-			strct->R_floor = nbr;
+			strct->r_floor = nbr;
 		else if (rgb == 1)
-			strct->G_floor = nbr;
+			strct->g_floor = nbr;
 		else if (rgb == 2)
-			strct->B_floor = nbr;
+			strct->b_floor = nbr;
 	}
 }
 

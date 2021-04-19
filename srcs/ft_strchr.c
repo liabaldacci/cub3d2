@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:08:25 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/03/24 19:53:00 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:32:27 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 char		*ft_strchr(const char *s, int c)
 {

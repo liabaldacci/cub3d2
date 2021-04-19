@@ -1,4 +1,4 @@
-NAME =		cub3D
+NAME =		cub3d
 GNL = get_next_line
 
 SRC_DIR = 	srcs
@@ -12,8 +12,8 @@ FLAGS_MLX =	-lm -lbsd -lX11 -lXext -lmlx
 					
 MLX =		$(MLX_DIR)/libmlx.a
 SRCS =		$(SRC_DIR)/main.c $(SRC_DIR)/close.c $(SRC_DIR)/ft_mlx_pixel_put.c \
-				$(SRC_DIR)/ft_empty_circle.c $(SRC_DIR)/ft_square.c $(SRC_DIR)/ft_line.c \
-				$(SRC_DIR)/ft_filled_circle.c $(SRC_DIR)/key_press.c $(SRC_DIR)/ft_init.c \
+				$(SRC_DIR)/ft_square.c $(SRC_DIR)/ft_line.c \
+				$(SRC_DIR)/key_press.c $(SRC_DIR)/ft_init.c \
 				$(SRC_DIR)/ft_move.c $(SRC_DIR)/ft_putendl_fd.c $(SRC_DIR)/ft_check_args.c \
 				$(GNL_DIR)/$(GNL).c $(GNL_DIR)/$(GNL)_utils.c  $(SRC_DIR)/ft_strncmp.c  \
 				$(SRC_DIR)/ft_map.c $(SRC_DIR)/ft_isdigit.c $(SRC_DIR)/ft_atoi.c \
@@ -23,7 +23,9 @@ SRCS =		$(SRC_DIR)/main.c $(SRC_DIR)/close.c $(SRC_DIR)/ft_mlx_pixel_put.c \
 				$(SRC_DIR)/ft_input.c $(SRC_DIR)/ft_render.c $(SRC_DIR)/raycasting.c \
 				$(SRC_DIR)/other_functions.c $(SRC_DIR)/textures.c $(SRC_DIR)/sprites.c \
 				$(SRC_DIR)/bmp.c $(SRC_DIR)/ft_bzero.c $(SRC_DIR)/utils.c \
-				$(SRC_DIR)/line_utils.c $(SRC_DIR)/raycasting2.c
+				$(SRC_DIR)/line_utils.c $(SRC_DIR)/raycasting2.c $(SRC_DIR)/ft_input_aux.c \
+				$(SRC_DIR)/ft_map2.c $(SRC_DIR)/ft_map3.c $(SRC_DIR)/game.c
+
 
 
 HEAD =		-I ./$(NAME).h -I ./$(GNL).h -I ./$(MLX_DIR) -L ./$(MLX_DIR)
@@ -34,7 +36,7 @@ RM =		/bin/rm -rf
 
 all: $(NAME)
 
-$(NAME): $(MLX) $(OBJS) #$@ means the output file will be ./cub3D instead of ./a.out
+$(NAME): $(MLX) $(OBJS) #$@ means the output file will be ./cub3d instead of ./a.out
 	$(CC) $(FLAGS_CC) $(OBJS) $(HEAD) $(FLAGS_MLX) $(MLX) -o $@
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
@@ -54,9 +56,9 @@ fclean: clean
 re: fclean all
 
 run: re
-	./cub3D $(ARGS)
+	./cub3d $(ARGS)
 
 debug: $(MLX) $(OBJS)
-	$(CC) -g $(FLAGS_MLX) $(FLAGS_CC) $(OBJS) $(HEAD) $(MLX) -o "cub3D_debug"
+	$(CC) -g $(FLAGS_MLX) $(FLAGS_CC) $(OBJS) $(HEAD) $(MLX) -o "cub3d_debug"
 
 .PONY: all clean fclean re

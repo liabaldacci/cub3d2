@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:44:43 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/03/22 21:49:17 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:32:50 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 char		*ft_substr(char const *s, unsigned int start, size_t len)
 {

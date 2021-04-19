@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 20:00:22 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:29:27 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:33:05 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int	key_press(int keycode, t_vars *strct)
 {

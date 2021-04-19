@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 21:46:50 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 15:33:58 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:31:54 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 int			ft_calc_new_xy(t_vars *strct, t_xy *newxy)
 {
@@ -61,8 +61,8 @@ int			ft_has_wall_at(t_vars *strct, double x, double y)
 	if (x < 0 || x + strct->player.width > strct->win_w
 		|| y < 0 || y + strct->player.height > strct->win_h)
 		return (1);
-	i = floor(x / strct->tile_X);
-	j = floor(y / strct->tile_Y);
+	i = floor(x / strct->tile_x);
+	j = floor(y / strct->tile_y);
 	value = strct->map[j][i] == '1';
 	return (value);
 }

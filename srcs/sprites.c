@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:13:39 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:44:02 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:33:30 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 double			ft_calc_angle(t_vars *strct, int i)
 {
@@ -104,7 +104,6 @@ void			ft_render_sprites(t_vars *strct)
 	double		angle_sprite_player;
 
 	i = 0;
-	printf("rotation angle: %f\n", strct->player.rotation_angle);
 	while (i < strct->num_of_sprites)
 	{
 		angle_sprite_player = ft_calc_angle(strct, i);

@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:35:13 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 16:54:49 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:32:07 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void		ft_render_column(t_vars *strct, int i)
 {
@@ -21,8 +21,8 @@ void		ft_render_column(t_vars *strct, int i)
 	j = 0;
 	while (j < strct->map_width)
 	{
-		tile_x_position = j * strct->tile_X;
-		tile_y_position = i * strct->tile_Y;
+		tile_x_position = j * strct->tile_x;
+		tile_y_position = i * strct->tile_y;
 		if (strct->map[i][j] == '1' || strct->map[i][j] == 'X')
 			strct->color = 0x00000000;
 		else if (strct->map[i][j] == '2')
@@ -31,8 +31,8 @@ void		ft_render_column(t_vars *strct, int i)
 			strct->color = 0xFFFFFF;
 		strct->xy.x = tile_x_position * strct->minimap_scale;
 		strct->xy.y = tile_y_position * strct->minimap_scale;
-		ft_square(strct, (strct->tile_Y * strct->minimap_scale),
-			(strct->tile_X * strct->minimap_scale));
+		ft_square(strct, (strct->tile_y * strct->minimap_scale),
+			(strct->tile_x * strct->minimap_scale));
 		j++;
 	}
 	j = 0;
@@ -76,7 +76,6 @@ void		ft_render_2d_rays(t_vars *strct)
 
 void		ft_render_3d_rays(t_vars *strct, double ray_angle)
 {
-	double	wall_strip_height;
 	double	distance_proj_plane;
 	int		wall_top_pixel;
 	int		wall_bottom_pixel;
@@ -84,20 +83,19 @@ void		ft_render_3d_rays(t_vars *strct, double ray_angle)
 
 	distance_proj_plane = (strct->win_w / 2)
 		/ tan(strct->player.fov_angle / 2);
-	wall_strip_height = (strct->tile_Y / (strct->rays.distance
+	strct->wallprojh = (strct->tile_y / (strct->rays.distance
 		* cos(ray_angle - strct->player.rotation_angle)))
 		* distance_proj_plane;
-	wall_top_pixel = (strct->win_h / 2) - (wall_strip_height / 2);
+	wall_top_pixel = (strct->win_h / 2) - (strct->wallprojh / 2);
 	wall_top_pixel = (wall_top_pixel <= 0) ? 1 : wall_top_pixel;
-	wall_bottom_pixel = (strct->win_h / 2) + (wall_strip_height / 2);
+	wall_bottom_pixel = (strct->win_h / 2) + (strct->wallprojh / 2);
 	wall_bottom_pixel = (wall_bottom_pixel >= strct->win_h)
 		? strct->win_h - 1 : wall_bottom_pixel;
 	i = ft_which_texture(strct, ray_angle);
 	set_xy_colors(strct, 1, wall_bottom_pixel);
 	ft_draw_line(strct, strct->rays.column_id,
 		wall_top_pixel);
-	ft_draw_texture(strct, wall_top_pixel, wall_bottom_pixel,
-		wall_strip_height, i);
+	ft_drtex(strct, wall_top_pixel, wall_bottom_pixel, i);
 	set_xy_colors(strct, 2, wall_bottom_pixel);
 	ft_draw_line(strct, strct->rays.column_id,
 		strct->win_h - 1);

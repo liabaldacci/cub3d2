@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 21:50:18 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:09:58 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:31:48 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void		ft_mlx_pixel_put(t_vars *strct, int x, int y, int color)
 {

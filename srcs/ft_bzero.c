@@ -6,11 +6,11 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 11:07:42 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 11:07:55 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:30:52 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3d.h"
 
 void	ft_bzero(void *s, size_t n)
 {
