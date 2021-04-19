@@ -25,6 +25,7 @@ void ft_init_struct(t_vars *strct)
     strct->player.walk_speed = 10;
     strct->map_height = 0;
     strct->map_width = 0;
+	strct->save = 0;
     strct->ceiling_color = 0x87CEEB;
     strct->floor_color = 0x91672C;
     strct->left = 0;
@@ -43,6 +44,15 @@ void ft_init_struct(t_vars *strct)
 		strct->tex_path[i] = NULL;
 }
 
+int		ft_init_image(t_vars *strct)
+{
+	strct->img = mlx_new_image(strct->mlx, strct->window_width,
+            strct->window_height);
+    strct->addr = mlx_get_data_addr(strct->img, &strct->bits_per_pixel,
+            &strct->line_length, &strct->endian);
+	return(0);
+}
+
 int    ft_init_window(t_vars *strct) {
     strct->mlx_win = mlx_new_window(strct->mlx, strct->window_width,
         strct->window_height, strct->window_title);
@@ -50,10 +60,10 @@ int    ft_init_window(t_vars *strct) {
         printf("Error initializing strct.");
         return (-1);
     }
-    strct->img = mlx_new_image(strct->mlx, strct->window_width,
-            strct->window_height);
-    strct->addr = mlx_get_data_addr(strct->img, &strct->bits_per_pixel,
-            &strct->line_length, &strct->endian);
+    // strct->img = mlx_new_image(strct->mlx, strct->window_width,
+    //         strct->window_height);
+    // strct->addr = mlx_get_data_addr(strct->img, &strct->bits_per_pixel,
+    //         &strct->line_length, &strct->endian);
     return (0);
 }
 

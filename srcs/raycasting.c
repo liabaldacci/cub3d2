@@ -57,7 +57,7 @@ void        ft_render_3d_rays(t_vars *strct, double ray_angle)
     wall_bottom_pixel = (wall_bottom_pixel >= strct->window_height)
         ? strct->window_height - 1 : wall_bottom_pixel;
     i = ft_which_texture(strct, ray_angle);
-    strct->color = strct->ceiling_color;
+    strct->color = strct->RGB_ceiling;
     ft_draw_line(strct, strct->rays.column_id,
         0,
         strct->rays.column_id,
@@ -68,7 +68,7 @@ void        ft_render_3d_rays(t_vars *strct, double ray_angle)
     //     wall_top_pixel,
     //     strct->rays.column_id,
     //     wall_bottom_pixel);
-    strct->color = strct->floor_color;
+    strct->color = strct->RGB_floor;
     ft_draw_line(strct, strct->rays.column_id,
         wall_bottom_pixel,
         strct->rays.column_id,

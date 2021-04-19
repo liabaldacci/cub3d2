@@ -96,5 +96,6 @@ int         ft_colors(char *str, t_vars *strct) {
         RGB++;
         free(number);
     }
-    return (0);
+	return (0);
 }
+

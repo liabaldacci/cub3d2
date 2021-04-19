@@ -37,6 +37,7 @@ typedef struct  s_player
     double      walk_speed;
     double      turn_speed;
     double      fov_angle;
+	int			is_mov_right;
     
 }               t_player;
 
@@ -109,9 +110,11 @@ typedef struct  s_vars
     int         R_ceiling;
     int         G_ceiling;
     int         B_ceiling;
+	int			RGB_ceiling;
     int         R_floor;
     int         G_floor;
     int         B_floor;
+	int			RGB_floor;
     int         ceiling_color;
     int         floor_color;
     char        *tex_path[5];
@@ -130,6 +133,7 @@ typedef struct  s_vars
 	int			num_of_sprites;
 	int			sprite_id;
 	double		*wall_distances;
+	int			save;
     t_player    player;
     t_rays      rays;
     t_textures  *tex;
@@ -185,6 +189,10 @@ void        ft_draw_texture(t_vars *strct, int top_pixel, int bottom_pixel, doub
 void	ft_init_sprites(t_vars *strct);
 void		ft_render_sprites(t_vars *strct);
 void        ft_draw_sprite(t_vars *strct, int x, int i);
-
+int		create_rgb(int t, int r, int g, int b);
+void		rgb_maker(t_vars *strct);
+int					save_bmp_file(t_vars *strct);
+void	ft_bzero(void *s, size_t n);
+int		ft_init_image(t_vars *strct);
 
 #endif

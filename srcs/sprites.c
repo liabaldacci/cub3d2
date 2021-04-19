@@ -17,13 +17,30 @@ double			ft_calc_angle(t_vars *strct, int i)
 	double	angle;
 	double	j;
 
-	j = atan2(strct->sprite[i].y - (double)strct->player.y,
-		strct->sprite[i].x - (double)strct->player.x);
-	angle = strct->player.rotation_angle - j;
+	// if(strct->player.rotation_angle >= 0 && strct->player.rotation_angle <= PI)
+	// {
+	// 	strct->sprite[i].x = strct->sprite[i].x + strct->tile_X;
+	// 	strct->sprite[i].y = strct->sprite[i].y + strct->tile_Y; 
+	// }
+	// j = atan2(strct->sprite[i].y - (double)strct->player.y,
+	// 	strct->sprite[i].x - (double)strct->player.x);
+	// if(strct->player.rotation_angle >= 0 && strct->player.rotation_angle <= PI)
+	// {
+	// 	strct->sprite[i].x = ((strct->sprite[i].x + 1) * strct->tile_X);
+	// 	strct->sprite[i].y = ((strct->sprite[i].y + 1) * strct->tile_Y);
+	// }
+	// else
+	// {
+	// 	strct->sprite[i].x = (strct->sprite[i].x * strct->tile_X);
+	// 	strct->sprite[i].y = (strct->sprite[i].y * strct->tile_Y);
+	// }
+	angle = atan2(strct->sprite[i].y - strct->player.y,
+		strct->sprite[i].x - strct->player.x) - strct->player.rotation_angle;
+	// angle = strct->player.rotation_angle - j;
 	if (angle > PI)
 		angle -= TWO_PI;
 	if (angle < -PI)
-		angle+= TWO_PI;
+		angle += TWO_PI;
 	angle = fabs(angle);
 	// ft_normalize_angle(angle);
 	return (angle);
@@ -34,6 +51,9 @@ void			ft_calc_distance(t_vars *strct, double angle_sprite_player, int i)
 	double		epsilon;
 
 	epsilon = 0.2;
+	strct->sprite[i].distance =
+			ft_distance_between_points(strct->sprite[i].x, strct->sprite[i].y,
+			strct->player.x, strct->player.y);
 	if (angle_sprite_player < ((strct->player.fov_angle / 2) + epsilon))
 	{
 		strct->sprite[i].is_visible = 1;
@@ -70,7 +90,7 @@ void			ft_sort_sprites(t_vars *strct)
 	}
 }
 
-void			ft_render_single_sprite(t_vars *strct, int i, double sprite_angle)
+void			ft_render_single_sprite(t_vars *strct, int i)
 {
 	double	distance_proj_plane;
 	double	screen_pos_x;
@@ -90,6 +110,8 @@ void			ft_render_single_sprite(t_vars *strct, int i, double sprite_angle)
 	strct->sprite[i].bottom_y = (strct->window_height / 2) + (strct->sprite[i].height / 2);
 	strct->sprite[i].bottom_y = (strct->sprite[i].bottom_y > strct->window_height) ? strct->window_height : strct->sprite[i].bottom_y;
 
+	angle = atan2(strct->sprite[i].y - strct->player.y,
+		strct->sprite[i].x - strct->player.x);
 	angle = atan2(strct->sprite[i].y - strct->player.y,
 		strct->sprite[i].x - strct->player.x) - strct->player.rotation_angle;
 	screen_pos_x = tan(angle) * distance_proj_plane;
@@ -123,7 +145,7 @@ void			ft_render_sprites(t_vars *strct)
 	{
 		if (strct->sprite[i].is_visible == 1)
 		{
-			ft_render_single_sprite(strct, i, angle_sprite_player);
+			ft_render_single_sprite(strct, i);
 		}
 		i++;
 	}

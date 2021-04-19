@@ -21,11 +21,15 @@ int key_press(int keycode, t_vars *strct)
     if (keycode == 65364 || keycode == 115)
         strct->player.walk_direction = -1;
     //if the LEFT or 'a' keys have been pressed
-    if (keycode == 65361 || keycode == 97)
+    if (keycode == 65361)
         strct->player.turn_direction = -1;
     //if the RIGHT or 'd' keys have been pressed
-    if (keycode == 65363 || keycode == 100)
+    if (keycode == 65363)
         strct->player.turn_direction = 1;
+	if (keycode == 100)
+		strct->player.is_mov_right = -1;
+	if (keycode == 97)
+		strct->player.is_mov_right = 1;
     //if the 'esc' key has been pressed the program closes.
     if (keycode == 65307)
     {
@@ -43,10 +47,12 @@ int key_release(int keycode, t_vars *strct)
     if (keycode == 65364 || keycode == 115)
         strct->player.walk_direction = 0;
     //if the LEFT or 'a' keys have been pressed
-    if (keycode == 65361 || keycode == 97)
+    if (keycode == 65361)
         strct->player.turn_direction = 0;
     //if the RIGHT or 'd' keys have been pressed
-    if (keycode == 65363 || keycode == 100)
+    if (keycode == 65363)
         strct->player.turn_direction = 0;
+	if (keycode == 97 || keycode == 100)
+		strct->player.is_mov_right = 0;
     return (0);
 }

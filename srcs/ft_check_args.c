@@ -42,13 +42,15 @@ int		ft_check_args(t_vars *strct, int argc, char **argv)
 	}
 	else if (argc == 3)
 	{
-		if (ft_strncmp(argv[1], "--save", 6) != 0)
+		if (ft_strncmp(argv[2], "--save", 6) != 0)
         {
             ft_putendl_fd("Error: Invalid flag as argument.\nUse: --save", 1);
             exit(1);
         }
-        if (ft_check_argument(argv[2]) >= 0){
-            strct->map_path = argv[2];
+        if (ft_strncmp(argv[2], "--save", 6) == 0)
+		{
+            strct->save = 1;
+			strct->map_path = argv[1];
             return(0);
         }
 	}

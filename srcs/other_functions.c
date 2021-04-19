@@ -29,3 +29,14 @@ double      ft_distance_between_points(double x1, double y1, double x2, double y
     distance = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     return (distance);    
 }
+
+int		create_rgb(int t, int r, int g, int b)
+{
+	return(t << 24 | r << 16 | g << 8 | b);
+}
+
+void		rgb_maker(t_vars *strct)
+{
+	strct->RGB_ceiling = create_rgb(0, strct->R_ceiling, strct->G_ceiling, strct->B_ceiling);
+	strct->RGB_floor = create_rgb(0, strct->R_floor, strct->G_floor, strct->B_floor);
+}

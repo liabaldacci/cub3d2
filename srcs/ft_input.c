@@ -40,6 +40,7 @@ int         ft_check_input(t_vars *strct)
     free(line);
     strct->tile_X = strct->window_width / strct->map_width;
     strct->tile_Y = strct->window_height / strct->map_height;
+	rgb_maker(strct);
     return (0);
 }
 
@@ -61,6 +62,7 @@ void		ft_count_sprites(t_vars *strct, char *line)
 int         ft_eval_line(char *line, t_vars *strct)
 {
     int     i;
+	
     i = 0;
     if ((line[i] == 'R') && line[i + 1] == ' ')
     {

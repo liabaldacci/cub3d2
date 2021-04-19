@@ -21,7 +21,8 @@ SRCS =		$(SRC_DIR)/main.c $(SRC_DIR)/close.c $(SRC_DIR)/ft_mlx_pixel_put.c \
 				$(SRC_DIR)/ft_resolution.c $(SRC_DIR)/ft_strlen.c $(SRC_DIR)/ft_substr.c \
 				$(SRC_DIR)/ft_strdup.c $(SRC_DIR)/ft_colors.c $(SRC_DIR)/ft_textures.c \
 				$(SRC_DIR)/ft_input.c $(SRC_DIR)/ft_render.c $(SRC_DIR)/raycasting.c \
-				$(SRC_DIR)/other_functions.c $(SRC_DIR)/textures.c $(SRC_DIR)/sprites.c
+				$(SRC_DIR)/other_functions.c $(SRC_DIR)/textures.c $(SRC_DIR)/sprites.c \
+				$(SRC_DIR)/bmp.c $(SRC_DIR)/ft_bzero.c
 
 
 HEAD =		-I ./$(NAME).h -I ./$(GNL).h -I ./$(MLX_DIR) -L ./$(MLX_DIR)

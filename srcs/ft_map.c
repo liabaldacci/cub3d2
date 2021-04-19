@@ -97,8 +97,8 @@ int         ft_map(char *str, t_vars *strct, int line_nbr) {
 		else if (ft_strchr("2", str[i]))
 		{
 			temp[i] = str[i];
-			strct->sprite[strct->sprite_id].x = (i * strct->tile_X);
-			strct->sprite[strct->sprite_id].y = (line_nbr * strct->tile_Y);
+			strct->sprite[strct->sprite_id].x = i * strct->tile_X;
+			strct->sprite[strct->sprite_id].y = line_nbr * strct->tile_Y;
 			strct->sprite_id++;
 		}
         else if (ft_strchr("NSWE", str[i]))
