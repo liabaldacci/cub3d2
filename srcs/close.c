@@ -17,9 +17,9 @@ void	ft_free_all(t_vars *strct)
 	int	i;
 
 	i = 0;
-	if (strct->tex_path != NULL)
+	while (i++ < 5)
 	{
-		while (i++ < 5)
+		if (strct->tex_path[i] != NULL)
 			free(strct->tex_path[i]);
 	}
 	free(strct->mlx);
