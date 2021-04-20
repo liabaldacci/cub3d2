@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 21:46:50 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:31:54 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/20 01:37:44 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			ft_calc_new_xy(t_vars *strct, t_xy *newxy)
 		newxy->x = strct->player.x + (move_step_x * strct->player.is_mov_right);
 		newxy->y = strct->player.y + (move_step_y * strct->player.is_mov_right);
 	}
+	return (0);
 }
 
 int			ft_move(t_vars *strct)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 17:55:19 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:31:43 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/20 02:32:54 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,19 @@ int		ft_map(char *str, t_vars *strct, int line_nbr)
 {
 	int		i;
 	char	*temp;
-	int		res;
 
 	i = 1;
-	res = ft_map_aux1(str, i);
+	if (ft_map_aux1(str, i) == -1)
+		return (-1);
 	i = -1;
 	temp = ft_calloc((strct->map_width + 1) * sizeof(char));
 	while (str[++i] != '\0' && ft_strchr("012NSWE \t\n\v\f\r", str[i]))
 	{
 		strct->counter = i;
-		res = ft_map_aux5(strct, temp, str, line_nbr);
+		if (ft_map_aux5(strct, temp, str, line_nbr) == -1)
+			return (-1);
 	}
 	strct->map[line_nbr] = ft_map_aux4(strct, temp, str, i);
-	if (res == -1)
-		return (-1);
+	free(temp);
 	return (1);
 }

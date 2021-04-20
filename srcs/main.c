@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:38 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:43:29 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/20 02:49:25 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		ft_init_main(t_vars *strct)
 	ft_init_image(strct);
 	if (strct->save == 1)
 		ft_render_save(strct);
+	return (0);
 }
 
 int		main(int argc, char **argv)
@@ -35,7 +36,7 @@ int		main(int argc, char **argv)
 		|| (ft_check_input(&strct) < 0)
 		|| ft_check_map(&strct) < 0)
 	{
-		close_program(&strct);
+		close_early_program(&strct);
 		return (-1);
 	}
 	ft_init_main(&strct);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:19:05 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:29:11 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/20 02:49:19 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,5 +256,6 @@ int				ft_vert_while(t_dbxy *check, t_dbxy *next_touch,
 					t_vars *strct, t_dbxy *step);
 int				ft_game(t_vars *strct);
 void			ft_render_save(t_vars *strct);
+int				close_early_program(t_vars *strct);
 
 #endif

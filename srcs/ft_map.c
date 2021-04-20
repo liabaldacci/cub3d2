@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 19:47:10 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:31:33 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/20 03:00:55 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ int		ft_check_map(t_vars *strct)
 	{
 		if (ft_strchr("NSWE\t\n\v\f\r", line[0]))
 		{
-			free(line);
+			// free(line);
 			continue;
 		}
 		else if (line[0] == ' ' || line[0] == '1')
 		{
-			line_nbr = ft_first_if(strct, line, line_nbr, fd);
+			if ((line_nbr = ft_first_if(strct, line, line_nbr, fd)) == -1)
+				return (-1);
 		}
 		free(line);
 	}
