@@ -6,82 +6,91 @@
 /*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 19:47:10 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/20 03:00:55 by nfranco-         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:51:55 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		ft_first_if(t_vars *strct, char *line, int line_nbr, int fd)
+int		ft_get_direction(t_vars *strct)
 {
-	if (ft_strchr(line, '1') != 0)
+	if (strct->player.direction == 'S')
+		strct->player.rotation_angle = PI / 2;
+	else if (strct->player.direction == 'W')
+		strct->player.rotation_angle = PI;
+	else if (strct->player.direction == 'N')
+		strct->player.rotation_angle = (3 * PI) / 2;
+	else if (strct->player.direction == 'E')
+		strct->player.rotation_angle = 0;
+	else
 	{
-		if (ft_map(line, strct, line_nbr) < 0)
-		{
-			ft_putendl_fd("Map is not valid.", 1);
-			free(line);
-			close(fd);
-			return (-1);
-		}
-		line_nbr++;
-	}
-	return (line_nbr);
-}
-
-int		ft_map_and_dir(t_vars *strct)
-{
-	if (ft_map_is_valid(strct) < 0)
-	{
-		ft_putendl_fd("Map is not valid.", 1);
+		ft_putendl_fd("There is no player position.", 1);
 		return (-1);
 	}
-	if (ft_get_direction(strct) == -1)
-		return (-1);
 	return (0);
 }
 
-void	ft_close_free_gnl(int fd, char *line)
+int		ft_check_x(t_vars *strct, int i, int j)
 {
-	close(fd);
-	free(line);
+	if (i != 0)
+		if (!ft_strchr("1X", strct->map[i - 1][j]))
+			return (-1);
+	if (i != strct->map_height - 1)
+		if (!ft_strchr("1X", strct->map[i + 1][j]))
+			return (-1);
+	if (j != 0)
+		if (!ft_strchr("1X", strct->map[i][j - 1]))
+			return (-1);
+	if (j != strct->map_width - 1)
+		if (!ft_strchr("1X", strct->map[i][j + 1]))
+			return (-1);
+	return (0);
 }
 
-int		ft_last_line(t_vars *strct, char *line, int fd, int line_nbr)
+int		ft_check_0(t_vars *strct, int i, int j)
 {
-	if (ft_strchr(line, '1') != 0 && (ft_map(line, strct, line_nbr) < 0))
-	{
-		ft_putendl_fd("Map is not valid.", 1);
-		ft_close_free_gnl(fd, line);
+	if (i == 0 || i == strct->map_height - 1 || j == 0
+		|| j == strct->map_width - 1)
 		return (-1);
+	else
+	{
+		if (!ft_strchr("012NSWE", strct->map[i - 1][j]))
+			return (-1);
+		if (!ft_strchr("012NSWE", strct->map[i + 1][j]))
+			return (-1);
+		if (!ft_strchr("012NSWE", strct->map[i][j - 1]))
+			return (-1);
+		if (!ft_strchr("012NSWE", strct->map[i][j + 1]))
+			return (-1);
 	}
-	ft_close_free_gnl(fd, line);
-	return (ft_map_and_dir(strct));
+	return (0);
 }
 
-int		ft_check_map(t_vars *strct)
+int		ft_map_is_valid(t_vars *strct)
 {
-	int		fd;
-	char	*line;
-	int		line_nbr;
+	int	i;
+	int	j;
 
-	line_nbr = 0;
-	line = NULL;
-	fd = open(strct->map_path, O_RDONLY);
-	strct->map = (char **)ft_calloc((strct->map_height + 1) * sizeof(char *));
-	ft_init_sprites(strct);
-	while (get_next_line(fd, &line) == 1)
+	i = 0;
+	j = 0;
+	while (i < strct->map_height)
 	{
-		if (ft_strchr("NSWE\t\n\v\f\r", line[0]))
+		while (j < strct->map_width)
 		{
-			// free(line);
-			continue;
+			if (strct->map[i][j] == 'X')
+			{
+				if (ft_check_x(strct, i, j) < 0)
+					return (-1);
+			}
+			else if (strct->map[i][j] == '0')
+			{
+				if (ft_check_0(strct, i, j) < 0)
+					return (-1);
+			}
+			j++;
 		}
-		else if (line[0] == ' ' || line[0] == '1')
-		{
-			if ((line_nbr = ft_first_if(strct, line, line_nbr, fd)) == -1)
-				return (-1);
-		}
-		free(line);
+		j = 0;
+		i++;
 	}
-	return (ft_last_line(strct, line, fd, line_nbr));
+	return (0);
 }

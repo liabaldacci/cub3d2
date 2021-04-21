@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_colors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 20:46:53 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:31:01 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 21:45:08 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		set_colors(t_vars *strct, int nbr, int rgb, char *str)
 		else if (rgb == 2)
 			strct->b_floor = nbr;
 	}
+	strct->color_id = 1;
 }
 
 int			ft_colors(char *str, t_vars *strct)

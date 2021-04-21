@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 21:47:45 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:32:55 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:02:04 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		ft_textures(char *str, t_vars *strct)
 		else
 			strct->tex_path[4] = ft_strdup(path);
 	}
+	strct->tex_id = 1;
 	free(path);
 	return (0);
 }

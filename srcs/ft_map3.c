@@ -6,80 +6,91 @@
 /*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 17:55:19 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/20 02:32:54 by nfranco-         ###   ########.fr       */
+/*   Updated: 2021/04/21 21:00:33 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_map_aux2(t_vars *strct, int line_nbr, int i)
+int		ft_check_map_whileaux(t_vars *strct, char **line, int line_nbr, int fd)
 {
-	strct->sprite[strct->sprite_id].x = i * strct->tile_x;
-	strct->sprite[strct->sprite_id].y = line_nbr * strct->tile_y;
-	strct->sprite_id++;
-}
-
-void	ft_map_aux3(t_vars *strct, char *str, int line_nbr, int i)
-{
-	strct->player.x = ((i * strct->tile_x) + (strct->tile_x / 2));
-	strct->player.y = ((line_nbr * strct->tile_y) + (strct->tile_y / 2));
-	strct->player.direction = str[i];
-}
-
-char	*ft_map_aux4(t_vars *strct, char *temp, char *str, int i)
-{
-	if (strct->map_width > ft_strlen(str))
+	if (ft_strchr("NSWE\t\n\v\f\r", line[0][0]))
 	{
-		while (i++ < strct->map_width)
-			temp[i - 1] = 'X';
+		free(line[0]);
+		return (2);
 	}
-	return (temp);
-}
-
-int		ft_map_aux5(t_vars *strct, char *temp, char *str, int line_nbr)
-{
-	if (ft_strchr(" \t\n\v\f\r", str[strct->counter]))
-		temp[strct->counter] = 'X';
-	else if (ft_strchr("2", str[strct->counter]))
+	else if (line[0][0] == ' ' || line[0][0] == '1')
 	{
-		temp[strct->counter] = str[strct->counter];
-		ft_map_aux2(strct, line_nbr, strct->counter);
-	}
-	else if (ft_strchr("NSWE", str[strct->counter]))
-	{
-		if (strct->player.x != 0 || strct->player.y != 0)
+		if (ft_strchr(line[0], '1') != 0)
 		{
-			ft_putendl_fd("Player position is invalid.", 1);
-			free(temp);
-			return (-1);
+			if (ft_map(line[0], strct, line_nbr) < 0)
+			{
+				ft_putendl_fd("Map is not valid.", 1);
+				free(line[0]);
+				close(fd);
+				return (-1);
+			}
+			return (3);
 		}
-		ft_map_aux3(strct, str, line_nbr, strct->counter);
-		temp[strct->counter] = '0';
 	}
-	else if (ft_strchr("012", str[strct->counter]))
-		temp[strct->counter] = str[strct->counter];
-	else
-		return (-1);
-	return (1);
+	free(line[0]);
+	return (0);
 }
 
-int		ft_map(char *str, t_vars *strct, int line_nbr)
+int		ft_check_map_while(t_vars *strct, char **line, int line_nbr, int fd)
 {
-	int		i;
-	char	*temp;
+	int	res;
 
-	i = 1;
-	if (ft_map_aux1(str, i) == -1)
-		return (-1);
-	i = -1;
-	temp = ft_calloc((strct->map_width + 1) * sizeof(char));
-	while (str[++i] != '\0' && ft_strchr("012NSWE \t\n\v\f\r", str[i]))
+	while (get_next_line(fd, line) == 1)
 	{
-		strct->counter = i;
-		if (ft_map_aux5(strct, temp, str, line_nbr) == -1)
+		res = ft_check_map_whileaux(strct, line, line_nbr, fd);
+		if (res == 2)
+			continue;
+		else if (res == -1)
 			return (-1);
+		else if (res == 3)
+		{
+			line_nbr++;
+			free(line[0]);
+		}
 	}
-	strct->map[line_nbr] = ft_map_aux4(strct, temp, str, i);
-	free(temp);
-	return (1);
+	return (line_nbr);
+}
+
+int		ft_check_map_final(t_vars *strct)
+{
+	if (ft_map_is_valid(strct) < 0)
+	{
+		ft_putendl_fd("Map is not valid.", 1);
+		return (-1);
+	}
+	if (ft_get_direction(strct) == -1)
+		return (-1);
+	return (0);
+}
+
+int		ft_check_map(t_vars *strct)
+{
+	int		fd;
+	char	*line;
+	int		line_nbr;
+
+	line_nbr = 0;
+	line = NULL;
+	fd = open(strct->map_path, O_RDONLY);
+	strct->map = (char **)ft_calloc((strct->map_height + 1) * sizeof(char *));
+	ft_init_sprites(strct);
+	line_nbr = ft_check_map_while(strct, &line, line_nbr, fd);
+	if (line_nbr < 0)
+		return (-1);
+	if (ft_strchr(line, '1') != 0)
+	{
+		ft_map(line, strct, line_nbr);
+		line_nbr++;
+	}
+	close(fd);
+	free(line);
+	if (ft_check_map_final(strct) < 0)
+		return (-1);
+	return (0);
 }

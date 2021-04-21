@@ -1,4 +1,4 @@
-NAME =		cub3d
+NAME =		cub3D
 GNL = get_next_line
 
 SRC_DIR = 	srcs
@@ -23,12 +23,12 @@ SRCS =		$(SRC_DIR)/main.c $(SRC_DIR)/close.c $(SRC_DIR)/ft_mlx_pixel_put.c \
 				$(SRC_DIR)/ft_input.c $(SRC_DIR)/ft_render.c $(SRC_DIR)/raycasting.c \
 				$(SRC_DIR)/other_functions.c $(SRC_DIR)/textures.c $(SRC_DIR)/sprites.c \
 				$(SRC_DIR)/bmp.c $(SRC_DIR)/ft_bzero.c $(SRC_DIR)/utils.c \
-				$(SRC_DIR)/line_utils.c $(SRC_DIR)/raycasting2.c $(SRC_DIR)/ft_input_aux.c \
-				$(SRC_DIR)/ft_map2.c $(SRC_DIR)/ft_map3.c $(SRC_DIR)/game.c
+				$(SRC_DIR)/line_utils.c $(SRC_DIR)/raycasting2.c $(SRC_DIR)/game.c \
+				$(SRC_DIR)/ft_map2.c $(SRC_DIR)/ft_map3.c $(SRC_DIR)/ft_input2.c
 
 
 
-HEAD =		-I ./$(NAME).h -I ./$(GNL).h -I ./$(MLX_DIR) -L ./$(MLX_DIR)
+HEAD =		-I ./cub3d.h -I ./$(GNL).h -I ./$(MLX_DIR) -L ./$(MLX_DIR)
 
 OBJS =		$(patsubst $(SRC_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS)) #subst in directory
 

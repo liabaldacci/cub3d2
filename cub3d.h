@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:19:05 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/20 02:49:19 by nfranco-         ###   ########.fr       */
+/*   Updated: 2021/04/21 18:59:52 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,9 @@ typedef struct	s_vars
 	double		ray_angle;
 	int			check;
 	double		wallprojh;
-	int			counter;
+	int			ctr;
+	int			color_id;
+	int			tex_id;
 	t_player	player;
 	t_rays		rays;
 	t_textures	*tex;
@@ -225,7 +227,7 @@ void			ft_render_3d_rays(t_vars *strct, double ray_angle);
 void			ft_distance_calc(t_vars *strct, double ray_angle);
 void			ft_vertical_check(t_vars *strct, double ray_angle);
 void			set_xy_colors(t_vars *strct, int i, int wall_bottom_pixel);
-void			ft_close_free_gnl(int fd, char *line);
+void			ft_close_free_gnl(char **line, int fd);
 void			ft_drtex(t_vars *strct, int top_p, int bot_p, int i);
 void			ft_init_rays(t_vars *strct);
 int				ft_1(t_vars *strct, char *line, int i);
@@ -236,10 +238,10 @@ int				ft_5(t_vars *strct, char *line, int i);
 void			ft_horizontal_check(t_vars *strct, double ray_angle);
 void			init_vert(t_dbxy *intercept, t_dbxy *step,
 					t_dbxy *next_touch, t_vars *strct);
-void			ft_eval_aux1(t_vars *strct, char *line);
+int				ft_eval_aux1(t_vars *strct, char *line, int i);
+int				ft_eval_aux2(t_vars *strct, char *line, int i);
 int				ft_first_if(t_vars *strct, char *line, int line_nbr, int fd);
 int				ft_map_and_dir(t_vars *strct);
-void			ft_close_free_gnl(int fd, char *line);
 int				ft_last_line(t_vars *strct, char *line, int fd, int line_nbr);
 int				ft_get_direction(t_vars *strct);
 int				ft_map_x(t_vars *strct, int i, int j);
@@ -256,6 +258,6 @@ int				ft_vert_while(t_dbxy *check, t_dbxy *next_touch,
 					t_vars *strct, t_dbxy *step);
 int				ft_game(t_vars *strct);
 void			ft_render_save(t_vars *strct);
-int				close_early_program(t_vars *strct);
+void			ft_count_sprites(t_vars *strct, char *line);
 
 #endif

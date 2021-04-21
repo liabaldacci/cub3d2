@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_input_aux.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 17:38:26 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/20 01:37:17 by nfranco-         ###   ########.fr       */
+/*   Updated: 2021/04/19 18:31:11 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_3(t_vars *strct, char *line, int i)
 
 int		ft_4(t_vars *strct, char *line, int i)
 {
-	if ((line[i] >= 8 && line[i] <= 13) || ft_strncmp(line, "\000", 5) == 0)
+	if (line[i] >= 8 && line[i] <= 13 || ft_strncmp(line, "\000", 5) == 0)
 	{
 		strct->check = 1;
 		return (1);

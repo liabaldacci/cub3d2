@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfranco- <nfranco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:38 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/20 02:49:25 by nfranco-         ###   ########.fr       */
+/*   Updated: 2021/04/21 18:57:19 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 		|| (ft_check_input(&strct) < 0)
 		|| ft_check_map(&strct) < 0)
 	{
-		close_early_program(&strct);
+		close_program(&strct);
 		return (-1);
 	}
 	ft_init_main(&strct);
