@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:19:05 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 18:59:52 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 19:13:06 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,6 @@ void			ft_init_struct(t_vars *strct);
 int				ft_init_window(t_vars *strct);
 void			ft_mlx_pixel_put(t_vars *strct, int x, int y, int color);
 void			ft_square(t_vars *strct, int h, int w);
-void			ft_empty_circle(t_vars *strct, int x, int y, int radius,
-					int color);
-void			ft_filled_circle(t_vars *strct, int x, int y, int radius,
-					int color);
 int				key_press(int keycode, t_vars *strct);
 int				key_release(int keycode, t_vars *strct);
 int				close_program(t_vars *strct);
@@ -230,28 +226,15 @@ void			set_xy_colors(t_vars *strct, int i, int wall_bottom_pixel);
 void			ft_close_free_gnl(char **line, int fd);
 void			ft_drtex(t_vars *strct, int top_p, int bot_p, int i);
 void			ft_init_rays(t_vars *strct);
-int				ft_1(t_vars *strct, char *line, int i);
-int				ft_2(t_vars *strct, char *line, int i);
-int				ft_3(t_vars *strct, char *line, int i);
-int				ft_4(t_vars *strct, char *line, int i);
-int				ft_5(t_vars *strct, char *line, int i);
 void			ft_horizontal_check(t_vars *strct, double ray_angle);
 void			init_vert(t_dbxy *intercept, t_dbxy *step,
 					t_dbxy *next_touch, t_vars *strct);
 int				ft_eval_aux1(t_vars *strct, char *line, int i);
 int				ft_eval_aux2(t_vars *strct, char *line, int i);
-int				ft_first_if(t_vars *strct, char *line, int line_nbr, int fd);
-int				ft_map_and_dir(t_vars *strct);
-int				ft_last_line(t_vars *strct, char *line, int fd, int line_nbr);
 int				ft_get_direction(t_vars *strct);
 int				ft_map_x(t_vars *strct, int i, int j);
 int				ft_map_0(t_vars *strct, int i, int j);
 int				ft_map_is_valid(t_vars *strct);
-int				ft_map_aux1(char *str, int i);
-void			ft_map_aux2(t_vars *strct, int line_nbr, int i);
-void			ft_map_aux3(t_vars *strct, char *str, int line_nbr, int i);
-char			*ft_map_aux4(t_vars *strct, char *temp, char *str, int i);
-int				ft_map_aux5(t_vars *strct, char *temp, char *str, int line_nbr);
 int				ft_map(char *str, t_vars *strct, int line_nbr);
 double			ft_normalize_angle(double angle);
 int				ft_vert_while(t_dbxy *check, t_dbxy *next_touch,

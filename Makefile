@@ -30,13 +30,13 @@ SRCS =		$(SRC_DIR)/main.c $(SRC_DIR)/close.c $(SRC_DIR)/ft_mlx_pixel_put.c \
 
 HEAD =		-I ./cub3d.h -I ./$(GNL).h -I ./$(MLX_DIR) -L ./$(MLX_DIR)
 
-OBJS =		$(patsubst $(SRC_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS)) #subst in directory
+OBJS =		$(patsubst $(SRC_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
 
 RM =		/bin/rm -rf
 
 all: $(NAME)
 
-$(NAME): $(MLX) $(OBJS) #$@ means the output file will be ./cub3d instead of ./a.out
+$(NAME): $(MLX) $(OBJS)
 	$(CC) $(FLAGS_CC) $(OBJS) $(HEAD) $(FLAGS_MLX) $(MLX) -o $@
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.c
@@ -56,7 +56,7 @@ fclean: clean
 re: fclean all
 
 run: re
-	./cub3d $(ARGS)
+	./cub3D $(ARGS)
 
 debug: $(MLX) $(OBJS)
 	$(CC) -g $(FLAGS_MLX) $(FLAGS_CC) $(OBJS) $(HEAD) $(MLX) -o "cub3d_debug"
