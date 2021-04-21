@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:10:45 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:33:34 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:13:06 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int		ft_load_textures(t_vars *strct, int i)
 		&strct->tex[i].w, &strct->tex[i].h);
 	if (!mlx)
 	{
-		ft_putendl_fd("ERROR!\nNo texture was loaded.", 1);
+		ft_putendl_fd("Error!\nNo texture was loaded.", 1);
 		return (-1);
 	}
 	str = mlx_get_data_addr(mlx, &strct->tex[i].bpp,
 		&strct->tex[i].line_length, &strct->tex[i].endian);
 	if (!str)
 	{
-		ft_putendl_fd("ERROR!\nInvalid textures.", 1);
+		ft_putendl_fd("Error!\nInvalid textures.", 1);
 		return (-1);
 	}
 	strct->tex[i].mlx = mlx;

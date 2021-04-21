@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 12:10:40 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/19 18:33:38 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:03:58 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ void		ft_init_rays(t_vars *strct)
 	strct->wall_distances =
 		(double *)ft_calloc(strct->rays.num_of * sizeof(double));
 	strct->rays.size_of = strct->win_w / strct->player.fov_angle;
+}
+
+void		ft_init_tiles(t_vars *strct)
+{
+	strct->tile_x = strct->win_w / strct->map_width;
+	strct->tile_y = strct->win_h / strct->map_height;
 }

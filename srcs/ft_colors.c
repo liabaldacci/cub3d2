@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:06:30 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:06:33 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:09:12 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int			ft_validate_number(char *number)
 	{
 		if (ft_isdigit(number[i]) == 0)
 		{
-			ft_putendl_fd("One of the colors is not in a valid number format."
-				, 1);
+			ft_putendl_fd("Error!\nOne of the colors is not in a \
+				valid number format.", 1);
 			return (-1);
 		}
 		i++;
@@ -49,7 +49,7 @@ int			ft_color_check(int c)
 {
 	if (c < 0 || c > 255)
 	{
-		ft_putendl_fd("Error in map configurations, color does not exist.", 1);
+		ft_putendl_fd("Error!\n Color does not exist.", 1);
 		return (-1);
 	}
 	return (0);

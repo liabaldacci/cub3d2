@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 17:55:00 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:07:17 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:10:54 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_map_while(t_vars *strct, char **temp, char *str, int line_nbr)
 	{
 		if (strct->player.x != 0 || strct->player.y != 0)
 		{
-			ft_putendl_fd("Player position is invalid.", 1);
+			ft_putendl_fd("Error\nPlayer position is invalid.", 1);
 			free(temp[0]);
 			return (-1);
 		}

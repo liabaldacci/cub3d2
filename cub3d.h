@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 18:19:05 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:13:06 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:03:19 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,5 +242,6 @@ int				ft_vert_while(t_dbxy *check, t_dbxy *next_touch,
 int				ft_game(t_vars *strct);
 void			ft_render_save(t_vars *strct);
 void			ft_count_sprites(t_vars *strct, char *line);
+void			ft_init_tiles(t_vars *strct);
 
 #endif

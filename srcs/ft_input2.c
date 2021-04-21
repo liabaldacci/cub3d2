@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 19:26:21 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 18:52:06 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:10:27 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int		ft_eval_line(char *line, t_vars *strct)
 		res = ft_eval_aux2(strct, line, i);
 	if (res == 0)
 	{
-		ft_putendl_fd("Map is not valid", 1);
+		ft_putendl_fd("Error!\nMap is not valid", 1);
 		return (-1);
 	}
 	else if (res == -1)
 	{
-		ft_putendl_fd("Map is not the last item in the config file", 1);
+		ft_putendl_fd("Error!\nMap is not the last item in the config file", 1);
 		return (-1);
 	}
 	return (0);

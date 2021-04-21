@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:38 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 18:57:19 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:12:39 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		main(int argc, char **argv)
 	ft_init_main(&strct);
 	if (ft_init_window(&strct) == -1)
 	{
-		ft_putendl_fd("Error initializing window.", 1);
+		ft_putendl_fd("Error!\nUnable to initialize window.", 1);
 		close_program(&strct);
 	}
 	mlx_hook(strct.mlx_win, 2, 1L << 0, key_press, &strct);

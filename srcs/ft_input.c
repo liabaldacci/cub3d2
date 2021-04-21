@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:06:52 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:06:53 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:10:08 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ void	ft_close_free_gnl(char **line, int fd)
 	free(line[0]);
 }
 
+int		check_fd(t_vars *strct)
+{
+	int	fd;
+
+	if ((fd = open(strct->map_path, O_RDONLY)) < 0)
+		ft_putendl_fd("Error\nInvalid path to map.", 1);
+	return (fd);
+}
+
 int		ft_check_input(t_vars *strct)
 {
 	int		fd;
@@ -25,7 +34,8 @@ int		ft_check_input(t_vars *strct)
 	int		i;
 
 	line = NULL;
-	fd = open(strct->map_path, O_RDONLY);
+	if ((fd = check_fd(strct)) < 0)
+		return (-1);
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (ft_eval_line(line, strct) == -1)
@@ -41,8 +51,7 @@ int		ft_check_input(t_vars *strct)
 		return (-1);
 	}
 	ft_close_free_gnl(&line, fd);
-	strct->tile_x = strct->win_w / strct->map_width;
-	strct->tile_y = strct->win_h / strct->map_height;
+	ft_init_tiles(strct);
 	rgb_maker(strct);
 	return (0);
 }

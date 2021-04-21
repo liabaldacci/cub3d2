@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 21:47:45 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:08:06 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:12:13 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_path_check(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putendl_fd("Invalid path to texture!", 1);
+		ft_putendl_fd("Error!\nInvalid path to texture!", 1);
 		return (-1);
 	}
 	close(fd);

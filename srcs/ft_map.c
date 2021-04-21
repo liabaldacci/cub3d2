@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:07:08 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:07:09 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:10:44 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_get_direction(t_vars *strct)
 		strct->player.rotation_angle = 0;
 	else
 	{
-		ft_putendl_fd("There is no player position.", 1);
+		ft_putendl_fd("Error!\nThere is no player position.", 1);
 		return (-1);
 	}
 	return (0);

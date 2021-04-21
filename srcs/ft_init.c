@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:06:40 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:06:41 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:09:55 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_init_struct(t_vars *strct)
 	strct->player = (t_player){0};
 	strct->xy = (t_xy){0};
 	strct->slope = (t_slope){0};
-	strct->window_title = "Hello world!";
+	strct->window_title = "Cub3D";
 	strct->player.width = 5;
 	strct->player.height = 5;
 	ft_init_zero(strct);
@@ -65,7 +65,7 @@ int		ft_init_window(t_vars *strct)
 		strct->win_h, strct->window_title);
 	if (!strct->mlx_win)
 	{
-		ft_putendl_fd("Error initializing strct.", 1);
+		ft_putendl_fd("Error!\n Unable to initialize strct.", 1);
 		return (-1);
 	}
 	return (0);

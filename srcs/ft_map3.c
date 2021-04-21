@@ -6,7 +6,7 @@
 /*   By: gadoglio <gadoglio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:07:28 by gadoglio          #+#    #+#             */
-/*   Updated: 2021/04/21 19:07:29 by gadoglio         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:11:36 by gadoglio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_check_map_whileaux(t_vars *strct, char **line, int line_nbr, int fd)
 		{
 			if (ft_map(line[0], strct, line_nbr) < 0)
 			{
-				ft_putendl_fd("Map is not valid.", 1);
+				ft_putendl_fd("Error\nMap is not valid.", 1);
 				free(line[0]);
 				close(fd);
 				return (-1);
@@ -61,7 +61,7 @@ int		ft_check_map_final(t_vars *strct)
 {
 	if (ft_map_is_valid(strct) < 0)
 	{
-		ft_putendl_fd("Map is not valid.", 1);
+		ft_putendl_fd("Error!\nMap is not valid.", 1);
 		return (-1);
 	}
 	if (ft_get_direction(strct) == -1)
